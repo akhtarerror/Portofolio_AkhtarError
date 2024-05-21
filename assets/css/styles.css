@@ -561,3 +561,124 @@ img {
     column-gap: 5rem;
   }
 }
+
+.container {
+  max-width: 124rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+#certification {
+  padding: 4rem 0;
+}
+
+@media (max-width: 1440px) {
+  #certification {
+    padding: 7rem 0;
+  }
+}
+
+#certification .certification-slider {
+  height: 37rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  #certification .certification-slider {
+    height: 30rem;
+  }
+}
+
+.certification-slide {
+  width: 37rem;
+  height: 42rem;
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  .certification-slide {
+    width: 20rem !important;
+    height: 15rem !important;
+  }
+  .certification-slide .certification-slide-img img {
+    width: 25rem !important;
+    height: 12rem !important;
+  }
+}
+
+.certification-slide .certification-slide-img img {
+  width: 37rem;
+  height: 22rem;
+  border-radius: 2rem;
+  background-size: cover;
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none;
+}
+
+.certification-slider-control {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certification-slider-control .swiper-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media (max-width: 990px) {
+  .certification-slider-control .swiper-button-next {
+    left: 70% !important;
+    transform: translateX(-70%) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .certification-slider-control .swiper-button-next {
+    left: 80% !important;
+    transform: translateX(-80%) !important;
+  }
+}
+
+@media (max-width: 990px) {
+  .certification-slider-control .swiper-button-prev {
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .certification-slider-control .swiper-button-prev {
+    left: 20% !important;
+    transform: translateX(-20%) !important;
+  }
+}
+
+.certification-slider-control .slider-arrow {
+  width: 3.5rem;
+  height: 3.5rem;
+  left: 42%;
+  transform: translateX(-42%);
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+.certification-slider-control .slider-arrow ion-icon {
+  font-size: 2rem;
+  color: var(--first-color-send);
+}
+
+.certification-slider-control .slider-arrow::after {
+  content: "";
+}
+
+.certification-slider-control
+  .swiper-pagination
+  .swiper-pagination-bullet-active {
+  background: var(--first-color);
+}

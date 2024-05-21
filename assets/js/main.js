@@ -3,10 +3,10 @@ const showMenu = (toggleId, navId) => {
   const toggle = document.getElementById(toggleId),
     nav = document.getElementById(navId);
 
-  // Validate that variables exist
+  // Validasi bahwa variabel ada
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
-      // We add the show-menu class to the div tag with the nav__menu class
+      // Menambahkan kelas show-menu ke tag div dengan kelas nav__menu
       nav.classList.toggle("show-menu");
     });
   }
@@ -18,7 +18,7 @@ const navLink = document.querySelectorAll(".nav__link");
 
 function linkAction() {
   const navMenu = document.getElementById("nav-menu");
-  // When we click on each nav__link, we remove the show-menu class
+  // Saat di klik setiap nav__link, maka akan menghapus kelas show-menu
   navMenu.classList.remove("show-menu");
 }
 navLink.forEach((n) => n.addEventListener("click", linkAction));
@@ -50,7 +50,7 @@ window.addEventListener("scroll", scrollActive);
 /*==================== CHANGE BACKGROUND HEADER ====================*/
 function scrollHeader() {
   const nav = document.getElementById("header");
-  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
+  // Jika tinggi area pandang gulir lebih besar dari 200, maka akan menambahkan kelas header-gulir ke tag header
   if (this.scrollY >= 200) nav.classList.add("scroll-header");
   else nav.classList.remove("scroll-header");
 }
@@ -59,7 +59,7 @@ window.addEventListener("scroll", scrollHeader);
 /*==================== SHOW SCROLL TOP ====================*/
 function scrollTop() {
   const scrollTop = document.getElementById("scroll-top");
-  // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
+  // Ketika gulir lebih tinggi dari tinggi area pandang 560, tambahkan kelas show-scroll ke tag a dengan kelas gulir-atas
   if (this.scrollY >= 560) scrollTop.classList.add("show-scroll");
   else scrollTop.classList.remove("show-scroll");
 }
@@ -69,33 +69,34 @@ window.addEventListener("scroll", scrollTop);
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
 
-// Previously selected theme (if user selected)
+// Tema yang dipilih sebelumnya (jika dipilih pengguna)
 const selectedTheme = localStorage.getItem("selected-theme");
 
-// We obtain the current theme that the interface has by validating the dark-theme class
+// Memperoleh tema antarmuka saat ini dengan memvalidasi kelas tema gelap
 const getCurrentTheme = () =>
   document.body.classList.contains(darkTheme) ? "dark" : "light";
 
-// We validate if the user previously chose a theme
+// Memvalidasi jika pengguna sebelumnya memilih tema
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark theme
+  // Jika validasi terpenuhi, akan menanyakan masalah apa yang perlu diketahui jika user mengaktifkan atau menonaktifkan tema gelap
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
     darkTheme
   );
   themeButton.innerText = selectedTheme === "dark" ? "Light Mode" : "Dark Mode";
 }
 
-// Activate / deactivate the theme manually with the button
+// Aktifkan/nonaktifkan tema secara manual dengan tombol
 themeButton.addEventListener("click", () => {
-  // Add or remove the dark theme
+  // Tambahkan atau hapus tema gelap
   document.body.classList.toggle(darkTheme);
-  // Update the text of the button
+  // Perbarui teks tombol
   themeButton.innerText =
     getCurrentTheme() === "dark" ? "Light Mode" : "Dark Mode";
-  // We save the theme that the user chose
+  // Menyimpan tema yang dipilih user
   localStorage.setItem("selected-theme", getCurrentTheme());
 });
 
+// Membuat tulisan bergerak
 const text =
   "Halo guys, perkenalkan nama saya Akhtar Faizi Putra. Saya mahasiswa Politeknik Negeri Jakarta.";
 let index = 0;
@@ -114,3 +115,39 @@ function type() {
 }
 
 type();
+
+// Inisialisasi Scroll Reveal
+const sr = ScrollReveal({
+  duration: 1000, // Durasi animasi (ms)
+  reset: true, // Animasi diulang saat scroll ke atas
+});
+
+// Swipper animasi
+var CertificationSlider = new Swiper(".certification-slider", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  loop: false,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 0,
+    depth: 100,
+    modifier: 2.5,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  initialSlide: 1,
+});
+
+// animasi untuk setiap elemen
+sr.reveal(".home", { origin: "bottom", distance: "20px", delay: 300 });
+sr.reveal(".about", { origin: "bottom", distance: "50px", delay: 300 });
+sr.reveal(".portofolio", { origin: "bottom", distance: "20px", delay: 300 });
+sr.reveal(".certification", { origin: "bottom", distance: "20px", delay: 300 });
