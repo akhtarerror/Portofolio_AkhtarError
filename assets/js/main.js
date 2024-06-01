@@ -149,5 +149,60 @@ var CertificationSlider = new Swiper(".certification-slider", {
 // animasi untuk setiap elemen
 sr.reveal(".home", { origin: "bottom", distance: "20px", delay: 300 });
 sr.reveal(".about", { origin: "bottom", distance: "50px", delay: 300 });
+sr.reveal(".experience", { origin: "bottom", distance: "50px", delay: 300 });
+sr.reveal(".experience", { origin: "bottom", distance: "50px", delay: 300 });
 sr.reveal(".portofolio", { origin: "bottom", distance: "20px", delay: 300 });
 sr.reveal(".certification", { origin: "bottom", distance: "20px", delay: 300 });
+
+// Fungsi untuk memeriksa apakah localStorage didukung
+const isStorageExist = () => {
+  if (typeof Storage === undefined) {
+    alert("Browser kamu tidak mendukung web storage");
+    return false;
+  }
+  return true;
+};
+
+// Fungsi untuk memuat data likes dari localStorage
+const loadLikesFromStorage = () => {
+  const likesData = JSON.parse(localStorage.getItem("PORTFOLIO_LIKES")) || {};
+  for (const id in likesData) {
+    const likesElement = document.getElementById("likes" + id);
+    likesElement.innerText = likesData[id] + " Likes";
+  }
+};
+
+// Fungsi untuk menyimpan data likes ke localStorage
+const saveLikesToStorage = (likesData) => {
+  localStorage.setItem("PORTFOLIO_LIKES", JSON.stringify(likesData));
+};
+
+// Fungsi untuk menambah like
+const addLike = (portfolioId) => {
+  const likesElement = document.getElementById("likes" + portfolioId);
+  const currentLikes = parseInt(likesElement.innerText);
+
+  // Update likes count
+  const newLikes = currentLikes + 1;
+  likesElement.innerText = newLikes + " Likes";
+
+  // Simpan data likes ke localStorage
+  const likesData = JSON.parse(localStorage.getItem("PORTFOLIO_LIKES")) || {};
+  likesData[portfolioId] = newLikes;
+  saveLikesToStorage(likesData);
+};
+
+// Menambahkan event listener untuk setiap tombol Like
+document.addEventListener("DOMContentLoaded", () => {
+  if (isStorageExist()) {
+    loadLikesFromStorage();
+  }
+
+  const buttons = document.querySelectorAll(".portofolio__button");
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault(); // Mencegah tindakan default dari tautan
+      addLike(index + 1); // Memanggil fungsi addLike dengan ID portofolio yang sesuai
+    });
+  });
+});
